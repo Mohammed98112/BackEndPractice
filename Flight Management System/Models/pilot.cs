@@ -6,7 +6,7 @@ namespace Flight_Management_System.Models
 {
     public class Pilot
     {
-        public int PilotId { get; set; }          // System Generated
+        public int PilotId { get; set; }           // System Generated
         public string PilotName { get; set; }     // User Input
         public string PilotPhone { get; set; }    // User Input
         public string LicenseNumber { get; set; } // User Input
