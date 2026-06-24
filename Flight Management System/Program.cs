@@ -1,7 +1,13 @@
-﻿namespace Flight_Management_System
+﻿using Flight_Management_System.Models;
+
+namespace Flight_Management_System
 {
     internal class Program
     {
+        public static FlightContext context = new FlightContext(); // Connect to the database/// Used to access and store data
+
+
+
         //MainMenu
         public static void mainmenue()
         {
@@ -28,6 +34,51 @@
 
         }
 
+        //case 1) Register a Passenger
+          public static void RegisteraPassenger()
+        {
+
+            Console.WriteLine("--- Register a Passenger ---");
+            Console.WriteLine("Your Name : ");
+            string name = Console.ReadLine();
+            Console.WriteLine($"Welcome Mr.{name} ");
+            Console.WriteLine("Email     : ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Phone     : ");
+            string phone = Console.ReadLine();
+            Console.WriteLine("Nationality : ");
+            string nationality = Console.ReadLine();
+            Console.WriteLine("Passport/ID No : "); 
+            string passport = Console.ReadLine();
+
+            // Check if a passenger with the same passport number already exists
+
+            bool duplicate = context.Passengers.Any(p => p.PassportNumber == passport);
+            if (duplicate)
+            { Console.WriteLine("ERROR: A passenger with this passport number already exists."); return; }// Stop registration process
+
+
+            // Generate a passenger ID 
+            int passengerID = context.Passengers.Count + 1;
+
+            // Create a new Passenger object and assign entered values
+            var Passenger = new Passenger
+            {   
+                PassengerId = passengerID,
+                PassengerName = name,
+                PassengerEmail = email,
+                PassengerPhone = phone,
+                PassportNumber = passport,
+                Nationality = nationality
+
+            };
+
+            context.Passengers.Add(Passenger);     // Add passenger to the database context
+
+
+            Console.WriteLine($"Passenger registered successfully! Assigned ID: {Passenger.PassengerId}");
+
+        }
 
 
 
@@ -47,6 +98,7 @@
                     //case 1) Register a Passenger
 
                     case 1:
+                        RegisteraPassenger();
                         break;
 
 
@@ -57,7 +109,7 @@
 
                     //case 3) Register a Pilot
                     case 3:
-                        break;
+                        break;   
 
 
 
