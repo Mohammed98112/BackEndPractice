@@ -80,6 +80,40 @@ namespace Flight_Management_System
 
         }
 
+        //case 2) Add an Aircraft
+        public static void AddanAircraft()
+        {
+            Console.WriteLine("--- Add an Aircraft  ---");
+            Console.WriteLine("Model: Boeing 737, Airbus A320");
+            string model = Console.ReadLine();
+            Console.Write("Total Seats: ");
+            int seats = int.Parse
+                (Console.ReadLine());
+            if (seats <= 0)
+            {
+                Console.WriteLine("ERROR: seats must be more than 0 !");
+                return;
+
+            }
+
+            var Aircraft = new Aircraft
+            {
+
+                AircraftId = context.Aircrafts.Count + 1,
+                Model = model,
+                TotalSeats = seats,
+                IsOperational = true
+
+            };
+
+            context.Aircrafts.Add(Aircraft);
+
+            Console.WriteLine($"Passenger registered successfully! Assigned ID: {Aircraft.AircraftId}");
+
+        }
+
+
+
 
 
         static void Main(string[] args)
@@ -104,6 +138,7 @@ namespace Flight_Management_System
 
                     //case 2) Add an Aircraft
                     case 2:
+                        AddanAircraft();
                         break;
 
 
