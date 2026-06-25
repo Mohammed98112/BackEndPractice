@@ -95,7 +95,6 @@ namespace Flight_Management_System
                 return;
 
             }
-
             var Aircraft = new Aircraft
             {
 
@@ -113,7 +112,47 @@ namespace Flight_Management_System
         }
 
 
+        //case 3) Register a Pilot
+        public static void RegisteraPilot()
 
+        {
+            Console.WriteLine("--- Register a Pilot ---");
+            Console.WriteLine("Name       : ");
+            string name = Console.ReadLine();
+            Console.WriteLine($"Welcome Mr.{name} ");
+            Console.WriteLine("Phone           : "); 
+            string phone = Console.ReadLine();
+            Console.WriteLine("License Number  : ");
+            string license = Console.ReadLine();
+
+            bool check = context.Pilots.Any(a => a.LicenseNumber == license);
+            if (check)
+            { Console.WriteLine("ERROR: A pilot with this LicenseNumber already exists."); return; }// Stop registration process
+
+            Console.Write("Total Flight Hours (existing): ");
+            int hours = Convert.ToInt32(Console.ReadLine());
+
+            if (hours <= 0)
+            {
+                Console.WriteLine("ERROR: seats must be more than 0 !");
+                return;
+
+            }
+
+            var pilot = new Pilot
+            {
+                PilotId = context.Pilots.Count + 1,
+                PilotName = name,
+                PilotPhone = phone,
+                LicenseNumber = license,
+                FlightHours = hours
+
+            };
+            context.Pilots.Add(pilot);
+            Console.WriteLine($"pilot registered successfully! Assigned ID: {pilot.PilotId}");
+
+
+        }
 
 
         static void Main(string[] args)
