@@ -30,12 +30,12 @@ namespace Flight_Management_System
             Console.WriteLine(" 10. Passenger Booking History");
             Console.WriteLine(" 11. Flight Revenue & Load Factor Report");
             Console.WriteLine(" 0.  Exit");
-            
+
 
         }
 
         //case 1) Register a Passenger
-          public static void RegisteraPassenger()
+        public static void RegisteraPassenger()
         {
 
             Console.WriteLine("--- Register a Passenger ---");
@@ -48,7 +48,7 @@ namespace Flight_Management_System
             string phone = Console.ReadLine();
             Console.WriteLine("Nationality : ");
             string nationality = Console.ReadLine();
-            Console.WriteLine("Passport/ID No : "); 
+            Console.WriteLine("Passport/ID No : ");
             string passport = Console.ReadLine();
 
             // Check if a passenger with the same passport number already exists
@@ -63,7 +63,7 @@ namespace Flight_Management_System
 
             // Create a new Passenger object and assign entered values
             var Passenger = new Passenger
-            {   
+            {
                 PassengerId = passengerID,
                 PassengerName = name,
                 PassengerEmail = email,
@@ -85,6 +85,7 @@ namespace Flight_Management_System
         {
             Console.WriteLine("--- Add an Aircraft  ---");
             Console.WriteLine("Model: Boeing 737, Airbus A320");
+            Console.WriteLine("Enter aircraft model:     ");
             string model = Console.ReadLine();
             Console.Write("Total Seats: ");
             int seats = int.Parse
@@ -120,7 +121,7 @@ namespace Flight_Management_System
             Console.WriteLine("Name       : ");
             string name = Console.ReadLine();
             Console.WriteLine($"Welcome Mr.{name} ");
-            Console.WriteLine("Phone           : "); 
+            Console.WriteLine("Phone           : ");
             string phone = Console.ReadLine();
             Console.WriteLine("License Number  : ");
             string license = Console.ReadLine();
@@ -145,7 +146,8 @@ namespace Flight_Management_System
                 PilotName = name,
                 PilotPhone = phone,
                 LicenseNumber = license,
-                FlightHours = hours
+                FlightHours = hours,
+                IsAvailable = true
 
             };
             context.Pilots.Add(pilot);
@@ -182,12 +184,89 @@ namespace Flight_Management_System
 
         }
 
+        //case 5) Schedule a Flight
+        public static void ScheduleaFlight()
+        { }
 
+        // Case 6: Book a Flight
+        public static void BookaFlight()
+        { }
+
+        //case 7) Cancel a Booking
+
+        public static void CancelBooking()
+        {
+            Console.WriteLine("--- Cancel a Booking ---");
+
+            // 1. Ask for booking ID
+            Console.Write("Enter Booking ID: ");
+            int bookingId = Convert.ToInt32(Console.ReadLine());
+
+            // 2. Find booking
+            Booking booking =
+                context.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+
+            if (booking == null)
+            {
+                Console.WriteLine("Booking not found.");
+                return;
+            }
+
+            // 3. Check if already cancelled
+            if (booking.Status == "Cancelled")
+            {
+                Console.WriteLine("Booking is already cancelled.");
+                return;
+            }
+
+            // Find the flight related to this booking using FlightId
+            Flight flight =
+                context.Flights.FirstOrDefault(f => f.FlightId == booking.FlightId);
+
+            if (flight == null)
+            {
+                Console.WriteLine("Related flight not found.");
+                return;
+            }
+
+            // 5. Cancel booking
+            booking.Status = "Cancelled";
+
+            // 6. Return seat back to flight
+            flight.AvailableSeats++;
+
+            // 7. Success message
+            Console.WriteLine("Booking cancelled successfully!");
+            Console.WriteLine($"Booking ID: {booking.BookingId}");
+            Console.WriteLine($"Seat returned to flight {flight.FlightCode}");
+        }
+
+
+
+        //case 8) Depart a Flight
+        public static void DepartaFlight()
+        { }
+
+
+
+        //case 9) Cancel a Flight
+        public static void CancelFlight()
+        { }
+
+
+        //case 10) Passenger Booking History
+        public static void PassengerBookingHistory()
+        { }
+
+
+        //case 11) Flight Revenue & Load Factor Report
+        public static void FlightRevenueLoadFactorReport()
+        { }
 
 
         static void Main(string[] args)
         {
-            
+
             bool exit = false;
             while (exit == false)
             {
@@ -214,7 +293,7 @@ namespace Flight_Management_System
                     //case 3) Register a Pilot
                     case 3:
                         RegisteraPilot();
-                        break;   
+                        break;
 
 
 
@@ -226,38 +305,45 @@ namespace Flight_Management_System
 
                     //case 5) Schedule a Flight
                     case 5:
+                        ScheduleaFlight();
                         break;
 
 
 
                     //case 6) Book a Flight
                     case 6:
+                        BookaFlight();
                         break;
 
 
                     //case 7) Cancel a Booking
                     case 7:
+                        CancelBooking();
                         break;
 
 
-                    //case 8) Schedule a Flight
+                    //case 8) Depart a Flight
                     case 8:
+                        DepartaFlight();
                         break;
 
 
 
-                    //case 9) Book a Flight
+                    //case 9) Cancel a Flight
                     case 9:
+                        CancelFlight();
                         break;
 
 
-                    //case 10) Cancel a Booking
+                    //case 10) Passenger Booking History
                     case 10:
+                        PassengerBookingHistory();
                         break;
 
 
                     //case 11) Flight Revenue & Load Factor Report
                     case 11:
+                        FlightRevenueLoadFactorReport();
                         break;
 
                     //case 0) Exit
