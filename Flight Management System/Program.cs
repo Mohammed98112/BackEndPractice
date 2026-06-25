@@ -154,6 +154,36 @@ namespace Flight_Management_System
 
         }
 
+        //case 4) View All Flights
+
+        public static void ViewAllFlights()
+        {
+            Console.WriteLine("--- View All Flights ---");
+
+            if (context.Flights.Count == 0)
+            { Console.WriteLine("No flights available yet"); return; }// Stop  process
+
+            foreach (var flight in context.Flights)
+            {
+                Console.WriteLine($"Flight Code   : {flight.FlightCode}");
+                Console.WriteLine($"Origin        : {flight.Origin}");
+                Console.WriteLine($"Destination   : {flight.Destination}");
+                Console.WriteLine($"Departure Date: {flight.DepartureDate}");
+                Console.WriteLine($"Departure Time: {flight.DepartureTime}");
+                Console.WriteLine($"AvailableSeats: {flight.AvailableSeats}");
+                Console.WriteLine($"Ticket Price  : {flight.TicketPrice} OMR");
+                Console.WriteLine($"Status        : {flight.Status}");
+                Console.WriteLine("----------------------------------");
+            }
+
+
+
+
+
+        }
+
+
+
 
         static void Main(string[] args)
         {
@@ -183,12 +213,14 @@ namespace Flight_Management_System
 
                     //case 3) Register a Pilot
                     case 3:
+                        RegisteraPilot();
                         break;   
 
 
 
                     //case 4) View All Flights
                     case 4:
+                        ViewAllFlights();
                         break;
 
 
