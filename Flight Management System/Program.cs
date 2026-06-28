@@ -7,7 +7,6 @@ namespace Flight_Management_System
         public static FlightContext context = new FlightContext(); // Connect to the database/// Used to access and store data
 
 
-
         //MainMenu
         public static void mainmenue()
         {
@@ -112,7 +111,6 @@ namespace Flight_Management_System
 
         }
 
-
         //case 3) Register a Pilot
         public static void RegisteraPilot()
 
@@ -198,11 +196,11 @@ namespace Flight_Management_System
         {
             Console.WriteLine("--- Cancel a Booking ---");
 
-            // 1. Ask for booking ID
+            //Ask for booking ID
             Console.Write("Enter Booking ID: ");
             int bookingId = Convert.ToInt32(Console.ReadLine());
 
-            // 2. Find booking
+            //Find booking
             Booking booking =
                 context.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
 
@@ -212,7 +210,7 @@ namespace Flight_Management_System
                 return;
             }
 
-            // 3. Check if already cancelled
+            // Check if already cancelled
             if (booking.Status == "Cancelled")
             {
                 Console.WriteLine("Booking is already cancelled.");
@@ -229,24 +227,85 @@ namespace Flight_Management_System
                 return;
             }
 
-            // 5. Cancel booking
+            // Cancel booking
             booking.Status = "Cancelled";
 
-            // 6. Return seat back to flight
+            // Return seat back to flight
             flight.AvailableSeats++;
 
-            // 7. Success message
             Console.WriteLine("Booking cancelled successfully!");
             Console.WriteLine($"Booking ID: {booking.BookingId}");
             Console.WriteLine($"Seat returned to flight {flight.FlightCode}");
         }
 
 
-
         //case 8) Depart a Flight
         public static void DepartaFlight()
-        { }
+        {
+            Console.WriteLine("--- Depart a Flight ---");
 
+            // Ask the user for the flight they want to mark as departed
+            Console.Write("Enter Flight ID: ");
+            int flightId = Convert.ToInt32(Console.ReadLine());
+
+            // Search for the flight in the flights list
+            Flight flight = context.Flights.FirstOrDefault(f => f.FlightId == flightId);
+
+            // If no flight is found, stop the process
+            if (flight == null)
+            {
+                Console.WriteLine("Flight not found.");
+                return;
+            }
+
+            // A flight can only depart if its current status is "Scheduled"
+            // If it is already Departed or Cancelled, don't allow the operation
+            if (flight.Status != "Scheduled")
+            {
+                Console.WriteLine("Only scheduled flights can depart.");
+                return;
+            }
+
+            // Find the pilot assigned to this flight
+            Pilot pilot = context.Pilots.FirstOrDefault(p => p.PilotId == flight.PilotId);
+
+            // Safety check to make sure the assigned pilot exists
+            if (pilot == null)
+            {
+                Console.WriteLine("Assigned pilot not found.");
+                return;
+            }
+
+            // Ask how many hours this flight takes
+            // (The Flight class doesn't have a Duration property,
+            // so we ask the user for it.)
+            Console.Write("Enter Flight Duration (Hours): ");
+            int duration = Convert.ToInt32(Console.ReadLine());
+
+            // Flight duration must be greater than zero
+            if (duration <= 0)
+            {
+                Console.WriteLine("Invalid duration.");
+                return;
+            }
+
+            // Change the flight status because the flight has now taken off
+            flight.Status = "Departed";
+
+            // Add the completed flight hours to the pilot's total experience
+            pilot.FlightHours += duration;
+
+            // The pilot has finished this flight and is now available
+            // to be assigned to another scheduled flight
+            pilot.IsAvailable = true;
+
+            // Display a confirmation message
+            Console.WriteLine("Flight departed successfully!");
+            Console.WriteLine($"Flight Code : {flight.FlightCode}");
+            Console.WriteLine($"Status      : {flight.Status}");
+            Console.WriteLine($"Pilot       : {pilot.PilotName}");
+            Console.WriteLine($"Total Hours : {pilot.FlightHours}");
+        }
 
 
         //case 9) Cancel a Flight
@@ -274,8 +333,6 @@ namespace Flight_Management_System
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
-
-
 
                     //case 1) Register a Passenger
 
