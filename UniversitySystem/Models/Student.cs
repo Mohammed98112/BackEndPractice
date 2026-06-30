@@ -4,7 +4,14 @@ using System.Text;
 
 namespace UniversitySystem.Models
 {
-    internal class Student
+    public class Student
     {
+        public int studentId { get; set; }          
+        public string fullName { get; set; }         
+        public string email { get; set; }             
+        public string phoneNumber { get; set; }       
+        public DateTime dateOfBirth { get; set; }      
+        public int enrollmentYear { get; set; }         
+        public decimal gpa { get; set; }                 
     }
 }
