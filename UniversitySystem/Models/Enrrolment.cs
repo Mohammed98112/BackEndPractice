@@ -6,11 +6,11 @@ namespace UniversitySystem.Models
 {
     public class Enrollment
     {
-        public int enrollmentId { get; set; }         
-        public int studentId { get; set; }                
-        public int courseId { get; set; }                   
-        public DateTime enrollmentDate { get; set; }          
-        public string finalGrade { get; set; }                   
-        public string status { get; set; }                         
+        public int enrollmentId { get; set; }          // system generated
+        public int studentId { get; set; }                // foreign key
+        public int courseId { get; set; }                   // foreign key
+        public DateTime enrollmentDate { get; set; }           // system generated
+        public string finalGrade { get; set; }                   // user input 
+        public string status { get; set; }                         // default value "In Progress" | "Completed" | "Withdrawn"
     }
 }
