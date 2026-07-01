@@ -14,7 +14,7 @@ namespace UniversitySystem.Models
         public int studentId { get; set; }          // system generated
         [Required, MaxLength(100)]
         public string fullName { get; set; }         // user input
-        [Required]
+         [Required]
         [MaxLength(150)]
         public string email { get; set; }             // user input
         [MaxLength(20)]
