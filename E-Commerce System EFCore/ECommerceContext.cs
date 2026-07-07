@@ -13,6 +13,7 @@ namespace E_Commerce_System_ERD___Models_Copy
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderItems { get; set; }
       
     }
 }
