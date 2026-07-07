@@ -5,4 +5,9 @@
     <Project Path="OOPSystem/OOPSystem.csproj" />
     <Project Path="UniversitySystem/UniversitySystem.csproj" Id="ee6776a4-ccda-449f-9f7c-0646a3002a1a" />
   </UniversityProjectttt>
+  <Project Path="E-Commerce System EFCore/E-Commerce System EFCore.csproj" />
+  <Project Path="E-Commerce System ERD &amp; Models/E-Commerce System ERD &amp; Models.csproj" />
+  <Project Path="Flight Management System/Flight Management System Task 2.csproj" />
+  <Project Path="OOPSystem/OOPSystem.csproj" />
+  <Project Path="UniversitySystem/UniversitySystem.csproj" />
 </Solution>
