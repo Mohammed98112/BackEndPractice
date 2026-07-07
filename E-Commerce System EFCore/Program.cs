@@ -66,7 +66,97 @@
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            bool exit = false;
+            while (exit == false)
+            {
+                mainmenue();
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+
+                    //case 1) Register a New User
+
+                    case 1:
+                        break;
+
+
+                    //case 2) Add a New Product to a Category
+                    case 2:
+                        break;
+
+
+                    //case 3) Place an Order 
+                    case 3:
+                        break;
+
+
+
+                    //case 4)  Write a Product Review
+                    case 4:
+                        break;
+
+
+                    //case 5) Update Product Price and Availability 
+                    case 5:
+                        break;
+
+
+
+                    //case 6) Cancel an Order 
+                    case 6:
+                        break;
+
+
+                    //case 7) Delete a Review
+                    case 7:
+                        break;
+
+
+                    //case 8) View All Products (Get All)
+                    case 8:
+                        break;
+
+
+
+                    //case 9) Filter Products by Category and Price Range
+                    case 9:
+                        break;
+
+
+                    //case 10) Get Category with All Its Products (Include) 
+                    case 10:
+                        break;
+
+
+                        //case 11) View Order History with Full Details(ThenInclude)
+                    case 11:
+                        break;
+
+                        //case 12) Product Summary Report (Projection + LazyLoading) 
+                    case 12:
+                        break;
+                          
+                    //case 0) Exit
+                    case 0:
+                        exit = true;
+                        break;
+
+
+                    //wrong option
+                    default:
+                        Console.WriteLine("invalid option");
+                        break;
+
+                }
+                Console.WriteLine("press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
+
+
+
+
+            }
+
         }
     }
 }
