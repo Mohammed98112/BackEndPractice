@@ -34,7 +34,7 @@ namespace E_Commerce_System_EFCore.Models
         public string? address { get; set; }              // user input 
 
         [Required]
-        public DateTime registrationDate { get; set; }   // system generated
+        public DateTime registrationDate { get; set; } = DateTime.UtcNow;   // system generated
 
         public bool isActive { get; set; } = true;       // default value
     }
