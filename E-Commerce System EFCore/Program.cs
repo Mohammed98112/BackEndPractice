@@ -1,8 +1,16 @@
-﻿namespace E_Commerce_System_EFCore
+﻿using E_Commerce_System_EFCore.Models;
+using E_Commerce_System_ERD___Models_Copy;
+using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
+
+namespace E_Commerce_System_EFCore
 {
-    internal class Program
+    public class Program
     {
         public static ECommerceContext context = new ECommerceContext();
+
+
+
         //MainMenu
         public static void mainmenue()
         {
@@ -27,6 +35,7 @@
             Console.WriteLine(" 0.  Exit");
 
         }
+
         //case 1) Register a New User
         public static void ADDUser()
         {
@@ -64,6 +73,42 @@
 
 
         }
+
+        //case 2) Add a New Product to a Category
+        public static void AddaNewProducttoaCategory()
+        {
+
+
+
+
+        }
+
+
+
+
+
+
+        //case 3) Place an Order 
+
+        //case 4)  Write a Product Review
+
+        //case 5) Update Product Price and Availability 
+
+        //case 6) Cancel an Order 
+
+        //case 7) Delete a Review
+
+        //case 8) View All Products (Get All)
+
+        //case 9) Filter Products by Category and Price Range
+
+        //case 10) Get Category with All Its Products (Include) 
+
+        //case 11) View Order History with Full Details(ThenInclude)
+
+        //case 12) Product Summary Report (Projection + LazyLoading) 
+
+
         static void Main(string[] args)
         {
             bool exit = false;
@@ -157,6 +202,7 @@
 
             }
 
+
+            }
         }
-    }
 }
