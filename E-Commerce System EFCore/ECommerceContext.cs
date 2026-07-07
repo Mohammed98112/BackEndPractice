@@ -9,6 +9,7 @@ namespace E_Commerce_System_ERD___Models_Copy
 {
     public class ECommerceContext : DbContext
     {
-        
+        public DbSet<User> Users { get; set; }
+      
     }
 }
