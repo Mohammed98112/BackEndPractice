@@ -156,7 +156,31 @@ namespace E_Commerce_System_EFCore
         //case 4)  Write a Product Review
 
         //case 5) Update Product Price and Availability 
+        public static void UpdateProductPriceandAvailability()
+        {
+         
+            Console.WriteLine("Product ID: ");
+            int productId = int.Parse(Console.ReadLine());
 
+            Product product = context.Products.FirstOrDefault(p => p.productId == productId);
+            if (product == null)
+            {
+                Console.WriteLine("Product not found.");
+                return;
+            }
+
+            Console.WriteLine("the New price: ");
+            decimal newPrice = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Is it Available? (true/false): ");
+            bool isAvailable = bool.Parse(Console.ReadLine());
+
+
+            product.price = newPrice;
+            product.isAvailable = isAvailable;
+            context.SaveChanges();
+
+            Console.WriteLine($"Product '{product.productName}' updated New price:{product.price} Available:{product.isAvailable}");
+        }
         //case 6) Cancel an Order 
 
         //case 7) Delete a Review
