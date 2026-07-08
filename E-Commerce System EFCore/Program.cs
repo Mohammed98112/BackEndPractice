@@ -77,6 +77,28 @@ namespace E_Commerce_System_EFCore
         //case 2) Add a New Product to a Category
         public static void AddaNewProducttoaCategory()
         {
+            Console.WriteLine("Available Categories:");
+            foreach (var c in context.Categories.ToList())
+            {
+                Console.WriteLine($"{c.categoryId} - {c.categoryName}");
+            }
+            Console.Write("Category ID: "); int categoryId = int.Parse(Console.ReadLine());
+            Console.WriteLine("Product Name: "); string Product = Console.ReadLine();
+            Console.WriteLine("price :  "); decimal price = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("Quantity :  "); int Quantity = int.Parse(Console.ReadLine());
+
+            context.Products.Add(new Product
+            {
+                productName = Product,
+                categoryId = categoryId,
+                price = price,
+                stockQuantity = Quantity
+
+            });
+            context.SaveChanges();
+            Product saved = context.Products.OrderBy(x => x.productId).Last();
+            Console.WriteLine($"product registered successfully. The ID:{saved.productId}");
+        }
 
 
 
