@@ -2,6 +2,7 @@
 using E_Commerce_System_ERD___Models_Copy;
 using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace E_Commerce_System_EFCore
 {
@@ -36,6 +37,8 @@ namespace E_Commerce_System_EFCore
 
         }
 
+        // ============================================================
+
         //case 1) Register a New User
         public static void ADDUser()
         {
@@ -62,8 +65,7 @@ namespace E_Commerce_System_EFCore
                 passwordHash = password,
                 fullName = fullName,
                 phoneNumber = number,  
-                address = Adress,
-                isActive = true
+                address = Adress
 
             });
             context.SaveChanges();
@@ -73,6 +75,8 @@ namespace E_Commerce_System_EFCore
 
 
         }
+
+        // ============================================================
 
         //case 2) Add a New Product to a Category
         public static void AddaNewProducttoaCategory()
@@ -100,6 +104,7 @@ namespace E_Commerce_System_EFCore
             Console.WriteLine($"product registered successfully. The ID:{saved.productId}");
         }
 
+        // ============================================================
 
         //case 3) Place an Order 
         public static void PlaceanOrder()
@@ -119,6 +124,7 @@ namespace E_Commerce_System_EFCore
             context.SaveChanges();
 
         }
+        // ============================================================
 
         //case 4)  Write a Product Review
         public static void WriteaProductReview()
@@ -126,7 +132,7 @@ namespace E_Commerce_System_EFCore
             foreach (var c in context.Users.ToList())
             {
                 Console.WriteLine($"{c.userId} - {c.username }");
-        }
+            }
 
             foreach (var c in context.Products.ToList())
             {
@@ -151,9 +157,10 @@ namespace E_Commerce_System_EFCore
             Review saved = context.Reviews.OrderBy(x => x.reviewId).Last();
             Console.WriteLine($"Review submitted successfully. The ID:{saved.reviewId}");
 
-        //case 3) Place an Order 
 
-        //case 4)  Write a Product Review
+        }
+
+        // ============================================================
 
         //case 5) Update Product Price and Availability 
         public static void UpdateProductPriceandAvailability()
@@ -181,20 +188,62 @@ namespace E_Commerce_System_EFCore
 
             Console.WriteLine($"Product '{product.productName}' updated New price:{product.price} Available:{product.isAvailable}");
         }
+        
         //case 6) Cancel an Order 
 
+        // ============================================================
+
+        public static void CancelanOrder()
+        {
+
+        }
+
+        // ============================================================
+
         //case 7) Delete a Review
+        public static void DeleteaReview()
+        {
+
+        }
+
+        // ============================================================
 
         //case 8) View All Products (Get All)
+        public static void ViewAllProducts()
+        {
+
+        }
+
+        // ============================================================
 
         //case 9) Filter Products by Category and Price Range
+        public static void FilterProductsbyCategoryandPriceRange()
+        {
+
+        }
+
+        // ============================================================
 
         //case 10) Get Category with All Its Products (Include) 
+        public static void GetCategorywithAllItsProducts()
+        {
+
+        }
+
+        // ============================================================
 
         //case 11) View Order History with Full Details(ThenInclude)
+        public static void ViewOrderHistorywithFullDetails()
+        {
 
+        }
         //case 12) Product Summary Report (Projection + LazyLoading) 
+        public static void ProductSummaryReport()
+        {
 
+        }
+
+        // ============================================================
 
         static void Main(string[] args)
         {
