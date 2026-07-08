@@ -101,6 +101,12 @@ namespace E_Commerce_System_EFCore
         }
 
 
+        //case 3) Place an Order 
+        public static void PlaceanOrder()
+        {
+            Console.WriteLine("user id : "); int userID = int.Parse(Console.ReadLine());
+            Console.WriteLine("shipp adress :  "); string ShippAdress = Console.ReadLine();
+            Console.WriteLine("Paymethod :  "); string Paymethod = Console.ReadLine();
 
 
         }
