@@ -108,6 +108,17 @@ namespace E_Commerce_System_EFCore
             Console.WriteLine("shipp adress :  "); string ShippAdress = Console.ReadLine();
             Console.WriteLine("Paymethod :  "); string Paymethod = Console.ReadLine();
 
+            context.Orders.Add( new Order
+            {
+                userId = userID,
+                shippingAddress = ShippAdress,
+                paymentMethod = Paymethod,
+                totalAmount = 0  
+
+            });
+            context.SaveChanges();
+
+        }
 
         }
 
