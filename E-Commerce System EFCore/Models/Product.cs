@@ -33,7 +33,7 @@ namespace E_Commerce_System_EFCore.Models
         public int categoryId { get; set; }              // foreign key
 
         [Required]
-        public DateTime createdAt { get; set; }          // system generated
+        public DateTime createdAt { get; set; } = DateTime.UtcNow;         // system generated
 
         public bool isAvailable { get; set; } = true;    // default value
     }
