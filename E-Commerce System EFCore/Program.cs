@@ -120,12 +120,36 @@ namespace E_Commerce_System_EFCore
 
         }
 
+        //case 4)  Write a Product Review
+        public static void WriteaProductReview()
+        {
+            foreach (var c in context.Users.ToList())
+            {
+                Console.WriteLine($"{c.userId} - {c.username }");
         }
 
+            foreach (var c in context.Products.ToList())
+            {
+                Console.WriteLine($"{c.productId} - {c.productName  }");
+            }
+
+            Console.Write("customer ID ID: "); int CustomerID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Product ID: "); int ProductID = int.Parse(Console.ReadLine());
+            Console.WriteLine("rating from 1 to 5 :  "); int rating = int.Parse(Console.ReadLine());
+            Console.WriteLine("Your comment :  "); string comment = Console.ReadLine();
 
 
+            context.Reviews.Add(new Review
+            {
+                userId = CustomerID,
+                productId = ProductID,
+                rating = rating,
+                comment = comment
+            });
 
-
+            context.SaveChanges();
+            Review saved = context.Reviews.OrderBy(x => x.reviewId).Last();
+            Console.WriteLine($"Review submitted successfully. The ID:{saved.reviewId}");
 
         //case 3) Place an Order 
 
