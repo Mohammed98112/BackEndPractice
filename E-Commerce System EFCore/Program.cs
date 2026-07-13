@@ -167,7 +167,7 @@ namespace E_Commerce_System_EFCore
         {
          
             Console.WriteLine("Product ID: ");
-            int productId = int.Parse(Console.ReadLine());
+            int productId = int.Parse(Console.ReadLine()); //
 
             Product product = context.Products.FirstOrDefault(p => p.productId == productId);
             if (product == null)
